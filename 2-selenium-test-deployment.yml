@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: selenium-test
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: selenium-test
+  template:
+    metadata:
+      labels:
+        app: selenium-test
+    spec:
+      containers:
+      - name: selenium-test
+        image: mcmusty212/selenium-test:1.0.0
+        env:
+        - name: SELENIUM_REMOTE_URL
+          value: "http://chrome-service:4444/wd/hub"  # Reference to ChromeDriver Selenium Hub
